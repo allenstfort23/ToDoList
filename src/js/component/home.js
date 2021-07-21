@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 //create your first component
 
 export function Home() {
-	// const [isShown, setIsShown] = useState(false);
+	const [isShown, setIsShown] = useState(false);
 	const [variable, setVariable] = useState([
 		"Do Homework",
 		"Do Laundry",
@@ -18,12 +18,18 @@ export function Home() {
 		return (
 			<li
 				className="col-12 list-group-item text-info"
-				style={{ height: "3rem" }}
-				key={i}>
+				style={{ height: "5rem" }}
+				key={i}
+				onMouseEnter={() => setIsShown(true)}
+				onMouseLeave={() => setIsShown(false)}>
 				{item}
-				<button className="float-right" onClick={() => removeItem(i)}>
-					X
-				</button>
+				{isShown && (
+					<button
+						className="float-right"
+						onClick={() => removeItem(i)}>
+						x
+					</button>
+				)}
 			</li>
 		);
 	});
@@ -31,6 +37,7 @@ export function Home() {
 	const removeItem = index => {
 		console.log(index);
 		const newArray = variable.filter((item, i) => i != index);
+		console.log(newArray);
 		setVariable(newArray);
 	};
 
@@ -40,6 +47,7 @@ export function Home() {
 			let userInput = onKeyDownEvent.target.value;
 			const newTodo = [...todo, variable];
 			setVariable(newTodo);
+			console.log(variable);
 			onKeyDownEvent.target.value = "";
 		}
 	};
@@ -63,6 +71,16 @@ export function Home() {
 					</span>
 				</ul>
 			</div>
+			{/* <div className="App">
+				<button
+					onMouseEnter={() => setIsShown(true)}
+					onMouseLeave={() => setIsShown(false)}>
+					Hover over me!
+				</button>
+				{isShown && (
+					<div>I&apos;ll appear when you hover over the button.</div>
+				)}
+			</div> */}
 		</>
 	);
 }
