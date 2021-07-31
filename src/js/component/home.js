@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 //create your first component
 
 export function Home() {
-	const [isShown, setIsShown] = useState(false);
+	const [isShown, setIsShown] = useState({ state: false, index: undefined });
 	const [variable, setVariable] = useState([
 		"Do Homework",
 		"Do Laundry",
@@ -20,10 +20,12 @@ export function Home() {
 				className="col-12 list-group-item text-info"
 				style={{ height: "5rem" }}
 				key={i}
-				onMouseEnter={() => setIsShown(true)}
-				onMouseLeave={() => setIsShown(false)}>
+				onMouseEnter={() => setIsShown({ state: true, index: i })}
+				onMouseLeave={() =>
+					setIsShown({ state: false, index: undefined })
+				}>
 				{item}
-				{isShown && (
+				{isShown.state && isShown.index === i && (
 					<button
 						className="float-right"
 						onClick={() => removeItem(i)}>
