@@ -47,7 +47,7 @@ export function Home() {
 		console.log(onKeyDownEvent);
 		if (onKeyDownEvent.keyCode === 13) {
 			let userInput = onKeyDownEvent.target.value;
-			const newTodo = [...todo, variable];
+			const newTodo = [...variable, userInput];
 			setVariable(newTodo);
 			console.log(variable);
 			onKeyDownEvent.target.value = "";
